@@ -57,11 +57,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {},
+    'master': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'NAME': os.path.join(BASE_DIR, 'master/db.sqlite3'),
+    },
+    'slave1': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'slave1/db.sqlite3'),
+    },
+    'slave2': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'slave2/db.sqlite3'),
+    },
 }
+
+DATABASE_ROUTERS = ('project.routers.MasterSlaveRouter',)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
